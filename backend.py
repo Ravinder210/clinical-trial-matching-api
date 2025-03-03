@@ -7,7 +7,14 @@ import spacy
 
 app = FastAPI()
 
+import subprocess
+
+# Download spaCy model if not available
+subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+
+# Load model
 nlp = spacy.load("en_core_web_sm")
+
 embedding_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 embedding_dim = 384
